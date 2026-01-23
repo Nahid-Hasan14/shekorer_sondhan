@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Facebook Pexel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', 'আপনার_পিক্সেল_ID_এখানে_দিন'); 
+        fbq('track', 'PageView');
+        </script>
+        <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=আপনার_পিক্সেল_ID_এখানে_দিন&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- Google Analytics - GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Navbar & Slider</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --text-dark: #111827;
+            --text-gray: #4b5563;
+            --white: #ffffff;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            padding-top: 75px; /* Navbar এর জন্য জায়গা */
+        }
+
+        /* ================= Navbar Styles ================= */
+        .navbar {
+            background: var(--white);
+            height: 75px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-box { flex: 1; }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary); text-decoration: none; }
+
+        .nav-links-wrapper { flex: 2; display: flex; justify-content: center; }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links li a { text-decoration: none; color: var(--text-gray); font-weight: 500; font-size: 15px; transition: 0.3s; }
+        .nav-links li a:hover { color: var(--primary); }
+
+        /* Profile Dropdown (Desktop) */
+        .profile-box { flex: 1; display: flex; justify-content: flex-end; position: relative; }
+        .profile-trigger {
+            display: flex; gap: 10px; align-items: center; cursor: pointer;
+            padding: 6px 15px; border-radius: 50px; background: #f3f4f6; transition: 0.3s;
+        }
+        .profile-trigger:hover { background: #e5e7eb; }
+
+        .desktop-dropdown {
+            position: absolute; top: 55px; right: 0; width: 200px; background: white;
+            border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 10px; display: none; list-style: none; border: 1px solid #f1f5f9;
+        }
+        .profile-box:hover .desktop-dropdown { display: block; }
+        .desktop-dropdown li a { display: flex; align-items: center; gap: 10px; padding: 10px; text-decoration: none; color: var(--text-dark); font-size: 14px; border-radius: 8px; }
+        .desktop-dropdown li a:hover { background: #f3f4f6; }
+
+        .mobile-profile-card { display: none; }
+        .mobile-toggle { display: none; font-size: 24px; cursor: pointer; }
+        .close-btn { display: none; }
+
+        /* ================= Slider Styles (SwiperJS) ================= */
+        .swiper {
+            width: 100%;
+            height: 500px;
+        }
+
+        .swiper-slide {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 6s ease; /* Zoom Effect */
+        }
+
+        /* স্লাইড যখন একটিভ হবে তখন ছবিটা বড় হবে */
+        .swiper-slide-active img {
+            transform: scale(1.1);
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            z-index: 10;
+            max-width: 500px;
+        }
+
+        .slide-content h2 {
+            font-size: 45px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s 0.3s forwards;
+        }
+
+        .slide-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s 0.5s forwards;
+        }
+
+        .swiper-slide-active .slide-content h2,
+        .swiper-slide-active .slide-content p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .shop-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .shop-btn:hover { background: #3730a3; transform: scale(1.05); }
+
+        /* Navigation Arrows */
+        .swiper-button-next, .swiper-button-prev {
+            color: white;
+            background: rgba(0,0,0,0.2);
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+        }
+        .swiper-button-next:after, .swiper-button-prev:after { font-size: 20px; font-weight: bold; }
+
+        /* ================= Mobile Responsive ================= */
+        @media (max-width: 992px) {
+            .mobile-toggle { display: block; }
+            .profile-box { display: none; }
+            .nav-links-wrapper {
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 300px;
+                background: white; transition: 0.4s; z-index: 1001; display: block;
+            }
+            .nav-links-wrapper.active { right: 0; }
+            .nav-links { flex-direction: column; padding: 70px 20px; align-items: flex-start; gap: 0; }
+            .nav-links li { width: 100%; border-bottom: 1px solid #f1f5f9; }
+            .nav-links li a { display: block; padding: 15px 10px; }
+            .close-btn { display: block; position: absolute; top: 20px; right: 20px; font-size: 28px; }
+            
+            .mobile-profile-card {
+                display: block; margin-top: 30px; padding: 15px; background: #f8fafc; border-radius: 15px;
+            }
+            .mobile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;}
+            .mobile-grid a { 
+                background: white; padding: 12px; text-align: center; border-radius: 10px; 
+                text-decoration: none; font-size: 12px; color: var(--text-dark); border: 1px solid #edf2f7;
+            }
+            .mobile-logout { display: block; margin-top: 15px; padding: 12px; text-align: center; background: #fee2e2; color: var(--danger); border-radius: 10px; text-decoration: none; font-weight: 600; }
+            
+            .swiper { height: 350px; }
+            .slide-content { left: 5%; width: 90%; }
+            .slide-content h2 { font-size: 28px; }
+        }
+    </style>
+    <style>
+        .footer {
+            background-color: #ffffff;
+            padding: 60px 0 20px;
+            margin-top: 50px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a {
+            text-decoration: none;
+            color: var(--text-gray);
+            transition: 0.3s;
+        }
+        .footer-col ul li a:hover { color: var(--primary); padding-left: 5px; }
+
+        /* সোশ্যাল আইকন */
+        .social-links { display: flex; gap: 15px; }
+        .social-links a {
+            width: 38px;
+            height: 38px;
+            background: #f3f4f6;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .social-links a:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+        /* সাবস্ক্রাইব ফর্ম */
+        .subscribe-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        .subscribe-form input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px 0 0 8px;
+            outline: none;
+        }
+        .subscribe-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .subscribe-form button:hover { background: #3730a3; }
+
+        /* নিচের কপিরাইট অংশ */
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #f1f5f9;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* মোবাইল রেসপনসিভ */
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+            .social-links { justify-content: center; }
+            .subscribe-form { max-width: 300px; margin: 15px auto; }
+        }
+    </style>
+    <style>
+        .product-section {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 { font-size: 32px; color: var(--text-dark); margin-bottom: 10px; }
+        .section-title p { color: var(--text-gray); font-size: 16px; }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* প্রোডাক্ট কার্ড স্টাইল */
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #f1f5f9;
+            position: relative;
+        }
+
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 35px rgba(0,0,0,0.1); }
+
+        /* ইমেজ এবং ব্যাজ */
+        .product-image {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: 0.5s ease;
+        }
+
+        .product-card:hover .product-image img { transform: scale(1.1); }
+
+        .badge {
+            position: absolute; top: 15px; left: 15px;
+            background: var(--primary); color: white;
+            padding: 5px 12px; font-size: 12px; border-radius: 50px; font-weight: 600; z-index: 10;
+        }
+        .badge.sale { background: #ef4444; }
+
+        /* হোভার অ্যাকশন বাটন */
+        .product-actions {
+            position: absolute; top: 15px; right: -50px;
+            display: flex; flex-direction: column; gap: 10px;
+            transition: 0.3s ease; z-index: 10;
+        }
+
+        .product-card:hover .product-actions { right: 15px; }
+
+        .product-actions button {
+            width: 40px; height: 40px; border-radius: 50%; border: none;
+            background: white; color: var(--text-dark); cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1); transition: 0.3s;
+        }
+
+        .product-actions button:hover { background: var(--primary); color: white; }
+
+        /* কার্ট বাটন */
+        .add-to-cart {
+            position: absolute; bottom: -50px; left: 0;
+            width: 100%; padding: 15px; background: var(--primary);
+            color: white; border: none; font-weight: 600; cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .product-card:hover .add-to-cart { bottom: 0; }
+
+        /* টেক্সট ইনফো */
+        .product-info { padding: 20px; }
+        .category { font-size: 12px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
+        .product-name { font-size: 18px; font-weight: 700; color: var(--text-dark); margin: 5px 0 10px; }
+        
+        .price-rating { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-size: 18px; font-weight: 800; color: var(--primary); }
+        .price del { font-size: 14px; color: #94a3b8; font-weight: 400; margin-left: 5px; }
+        
+        .rating { font-size: 14px; color: #f59e0b; font-weight: 600; }
+
+        /* মোবাইল রেসপনসিভ */
+        @media (max-width: 576px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .product-image { height: 250px; }
+            .add-to-cart { bottom: 0; padding: 12px; } /* মোবাইলে সবসময় দেখা যাবে */
+        }
+    </style>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .close-modal {
+            position: absolute; right: 20px; top: 15px;
+            font-size: 28px; cursor: pointer; color: #888;
+        }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group label { display: block; font-size: 14px; margin-bottom: 5px; font-weight: 600; }
+        .input-group input, .input-group textarea {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none;
+        }
+        .confirm-btn {
+            width: 100%; padding: 15px; background: var(--primary); color: white;
+            border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 16px;
+        }
+    </style>
+    <style>
+        /* Floating Cart */
+        .floating-cart { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; z-index: 1000; box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4); }
+        .badge { position: absolute; top: 0; right: 0; background: var(--danger); width: 22px; height: 22px; border-radius: 50%; font-size: 12px; display: flex; justify-content: center; align-items: center; font-weight: bold; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); overflow-y: auto; }
+        .modal-content { background: white; margin: 50px auto; padding: 25px; border-radius: 15px; width: 90%; max-width: 450px; position: relative; }
+        .close { position: absolute; right: 20px; top: 15px; font-size: 25px; cursor: pointer; }
+
+        /* Cart Steps */
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .qty-controls { display: flex; align-items: center; gap: 12px; }
+        .qty-btn { width: 28px; height: 28px; border: 1px solid #ddd; background: #f9fafb; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        
+        /* Delivery Options */
+        .delivery-section { margin: 15px 0; padding: 15px; background: #f8fafc; border-radius: 10px; }
+        .delivery-options { display: flex; gap: 10px; margin-top: 10px; }
+        .delivery-options input { display: none; }
+        .delivery-options label { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; text-align: center; cursor: pointer; font-size: 13px; background: white; transition: 0.3s; }
+        .delivery-options input:checked + label { border-color: var(--primary); background: #eef2ff; color: var(--primary); font-weight: bold; }
+
+        .bill-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+        .total-row { font-weight: 800; font-size: 18px; color: var(--primary); margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 10px; }
+        
+        .input-group { margin-bottom: 12px; }
+        .input-group label { display: block; font-size: 13px; margin-bottom: 5px; font-weight: 600; }
+        .input-group input, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; }
+        .submit-btn { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 10px; font-size: 16px; }
+        
+        #addressStep { display: none; }
+    </style>
+
+    <style>
+        /* WhatsApp Button Styles */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px; /* কার্ট ডানদিকে, তাই এটি বামদিকে রাখা ভালো */
+            background-color: #25d366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+            color: white;
+        }
+
+        /* মোবাইলের জন্য পজিশন কিছুটা অ্যাডজাস্টমেন্ট */
+        @media screen and (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+
+    <style>
+        /* Success Modal Styles */
+        #successModal .modal-content {
+            text-align: center;
+            padding: 40px;
+            border-top: 5px solid #25d366;
+        }
+        .success-icon {
+            font-size: 60px;
+            color: #25d366;
+            margin-bottom: 20px;
+        }
+        .success-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        .success-text {
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-box"><a href="#" class="logo">LUXENAV</a></div>
+            
+            <div class="nav-links-wrapper" id="navWrapper">
+                <i class="fas fa-times close-btn" id="closeBtn"></i>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Category</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <div class="mobile-profile-card">
+                        <p style="font-weight: 700; margin-bottom: 10px;">Account Menu</p>
+                        <div class="mobile-grid">
+                            <a href="#"><i class="fas fa-th-large"></i> Dashboard</a>
+                            <a href="#"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#"><i class="fas fa-tag"></i> Offers</a>
+                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        </div>
+                        <a href="#" class="mobile-logout">Logout</a>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="profile-box">
+                <div class="profile-trigger">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <span style="font-size: 14px; font-weight: 600;">Account</span>
+                    <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
+                </div>
+                <ul class="desktop-dropdown">
+                    <li><a href="#"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="#"><i class="fas fa-tags"></i> Offers</a></li>
+                    <li style="border-top: 1px solid #eee; margin-top: 5px;"><a href="#" style="color: var(--danger);"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+
+            <div class="mobile-toggle" id="openBtn"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1400" alt="Slider 1">
+                <div class="slide-content">
+                    <h2>New Arrivals</h2>
+                    <p>আপনার প্রিয় ফ্যাশন ব্র্যান্ডের নতুন কালেকশন এখন হাতের নাগালে।</p>
+                    <a href="#" class="shop-btn">Shop Now</a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1400" alt="Slider 2">
+                <div class="slide-content">
+                    <h2>Big Discounts</h2>
+                    <p>সব পণ্যে পাচ্ছেন ২৫% পর্যন্ত বিশাল ছাড়! অফারটি সীমিত সময়ের জন্য।</p>
+                    <a href="#" class="shop-btn">Get Offer</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+
+    <section class="product-section">
+        <div class="section-title">
+            <h2>আমাদের সেরা পণ্যসমূহ</h2>
+            <p>আপনার জন্য বাছাইকৃত সেরা কিছু কালেকশন</p>
+        </div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="badge">নতুন</span>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=500" alt="Product 1">
+                    <div class="product-actions">
+                        <button title="উইশলিস্ট"><i class="far fa-heart"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <!-- <button class="add-to-cart">কার্টে যোগ করুন</button> -->
+                     <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">ঘড়ি</span>
+                    <h3 class="product-name">প্রিমিয়াম স্মার্ট ওয়াচ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ২,৫০০ <del>৳ 1,০০০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="badge sale">অফার</span>
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=500" alt="Product 2">
+                    <div class="product-actions">
+                        <button onclick="addToCart('হেডফোন', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <!-- <button class="add-to-cart">কার্টে যোগ করুন</button> -->
+                     <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">ইলেকট্রনিক্স</span>
+                    <h3 class="product-name">ওয়্যারলেস হেডফোন</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ১,৮০০</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=500" alt="Product 3">
+                    <div class="product-actions">
+                        <button onclick="addToCart('Camera', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <!-- <button class="add-to-cart">কার্টে যোগ করুন</button> -->
+                     <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">ক্যামেরা</span>
+                    <h3 class="product-name">ইনস্ট্যান্ট পোলারয়েড ক্যামেরা</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৫,৫০০</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500" alt="Product 4">
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">জুতো</span>
+                    <h3 class="product-name">নাইকি স্পোর্টস শু</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৪,২০০ <del>৳ ৪,৮০০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <h3>অর্ডার নিশ্চিত করুন</h3>
+            <p id="selectedProduct" style="font-weight: bold; color: var(--primary); margin-bottom: 15px;"></p>
+            
+            <form action="https://formspree.io/f/meeebgvo" method="POST" id="checkoutForm">
+                <input type="hidden" name="Product Name" id="hiddenProductName">
+                
+                <div class="input-group">
+                    <label>আপনার নাম</label>
+                    <input type="text" name="Customer Name" placeholder="উদা: আব্দুল্লাহ" required>
+                </div>
+                <div class="input-group">
+                    <label>ফোন নম্বর</label>
+                    <input type="tel" name="Phone Number" placeholder="উদা: 017XXXXXXXX" required>
+                </div>
+                <div class="input-group">
+                    <label>পূর্ণ ঠিকানা</label>
+                    <textarea name="Address" placeholder="আপনার জেলা ও থানার নাম লিখুন" required></textarea>
+                </div>
+                <button type="submit" class="confirm-btn">অর্ডার সাবমিট করুন</button>
+            </form>
+        </div>
+    </div> -->
+
+    <div class="floating-cart" onclick="openCartModal()">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="badge" id="cartCount">0</div>
+    </div>
+
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            
+            <div id="cartStep">
+                <h3 style="margin-bottom: 15px;"><i class="fas fa-shopping-bag"></i> আপনার কার্ট</h3>
+                <div id="cartItemsList"></div>
+                <div class="bill-row" style="margin-top: 15px; font-weight: bold; font-size: 16px;">
+                    <span>সাবটোটাল:</span> <span>৳ <span id="cartSubtotal">0</span></span>
+                </div>
+                <button class="submit-btn" onclick="showAddressStep()">অর্ডার করতে এগিয়ে যান</button>
+            </div>
+
+            <div id="addressStep">
+                <h3 id="checkoutTitle">শিপিং ইনফরমেশন</h3>
+                
+                <div class="delivery-section">
+                    <label style="font-size: 13px; font-weight: 700;">ডেলিভারি এলাকা:</label>
+                    <div class="delivery-options">
+                        <input type="radio" id="inside" name="Area" value="60" checked onclick="calculateFinalTotal()">
+                        <label for="inside">ঢাকা সিটি (৳৬০)</label>
+                        
+                        <input type="radio" id="outside" name="Area" value="120" onclick="calculateFinalTotal()">
+                        <label for="outside">ঢাকার বাইরে (৳১২০)</label>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <div class="bill-row"><span>পণ্যমূল্য:</span> <span id="summarySubtotal">৳ ০</span></div>
+                        <div class="bill-row"><span>ডেলিভারি চার্জ:</span> <span id="summaryDelivery">৳ ৬০</span></div>
+                        <div class="bill-row total-row"><span>সর্বমোট:</span> <span id="summaryGrandTotal">৳ ০</span></div>
+                    </div>
+                </div>
+
+                <form action="https://formspree.io/f/meeebgvo" method="POST" onsubmit="handleOrderSubmit(event)">
+                    <input type="hidden" name="Order_Items" id="hiddenItems">
+                    <input type="hidden" name="Total_Bill" id="hiddenGrandTotal">
+                    <input type="hidden" name="Delivery_Charge" id="hiddenDelivery">
+
+                    <div class="input-group">
+                        <label>আপনার নাম</label>
+                        <input type="text" name="Name" required placeholder="আপনার নাম লিখুন">
+                    </div>
+                    <div class="input-group">
+                        <label>ফোন নম্বর</label>
+                        <input type="tel" name="Phone" required placeholder="017XXXXXXXX">
+                    </div>
+                    <div class="input-group">
+                        <label>বিস্তারিত ঠিকানা</label>
+                        <textarea name="Address" rows="3" required placeholder="বাসা নং, রোড নং, এলাকা, জেলা"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">অর্ডার কনফার্ম করুন</button>
+                    <button type="button" onclick="backToCart()" id="backBtn" style="width:100%; background:none; border:none; color:gray; margin-top:10px; cursor:pointer; font-size: 13px;">ব্যাগে ফিরে যান</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/8801XXXXXXXXX?text=হ্যালো, আমি আপনার ওয়েবসাইট থেকে কিছু পণ্য সম্পর্কে জানতে চাই।" 
+        class="whatsapp-float" 
+        target="_blank">
+            <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2 class="success-title">অর্ডার সফল হয়েছে!</h2>
+            <p class="success-text">আমাদের প্রতিনিধি খুব শীঘ্রই আপনার সাথে যোগাযোগ করবেন। LUXENAV এর সাথেই থাকুন।</p>
+            <button class="confirm-btn" onclick="closeSuccessModal()">ঠিক আছে</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="#" class="footer-logo">LUXENAV</a>
+                <p class="footer-desc">
+                    আমরা প্রদান করি সেরা মানের পণ্য এবং সেবা। আমাদের লক্ষ্য গ্রাহকের সন্তুষ্টি এবং বিশ্বাস অর্জন করা।
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>প্রয়োজনীয় লিঙ্ক</h4>
+                <ul>
+                    <li><a href="#">আমাদের সম্পর্কে</a></li>
+                    <li><a href="#">শপ পেজ</a></li>
+                    <li><a href="#">অফারসমূহ</a></li>
+                    <li><a href="#">ব্লগ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>সাপোর্ট</h4>
+                <ul>
+                    <li><a href="#">যোগাযোগ</a></li>
+                    <li><a href="#">প্রাইভেসি পলিসি</a></li>
+                    <li><a href="#">রিফান্ড পলিসি</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>নিউজলেটার</h4>
+                <p>আমাদের নতুন অফারগুলো জানতে সাবস্ক্রাইব করুন।</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="আপনার ইমেইল দিন" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 LUXENAV - সর্বস্বত্ব সংরক্ষিত।</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Navbar Mobile Toggle Logic
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const navWrapper = document.getElementById('navWrapper');
+
+        openBtn.onclick = () => navWrapper.classList.add('active');
+        closeBtn.onclick = () => navWrapper.classList.remove('active');
+
+        // Initialize SwiperJS
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            speed: 1000,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+    <script>
+        const modal = document.getElementById("orderModal");
+
+        // অর্ডার বাটন ফাংশন (কার্ডের বাটনে এটি কল করবেন)
+        function openOrderModal(productName) {
+            document.getElementById("selectedProduct").innerText = "পণ্য: " + productName;
+            document.getElementById("hiddenProductName").value = productName;
+            modal.style.display = "block";
+        }
+
+        function closeOrderModal() {
+            modal.style.display = "none";
+        }
+
+        // উইন্ডোর বাইরে ক্লিক করলে বন্ধ হবে
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeOrderModal();
+            }
+        }
+    </script>
+
+    <script>
+        let cart = [];
+        let subtotal = 0;
+
+        // 1. Cart Logic
+        function addToCart(name, price) {
+            let item = cart.find(i => i.name === name);
+            if (item) {
+                item.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateBadge();
+            alert(name + " কার্টে যোগ হয়েছে!");
+        }
+
+        function updateBadge() {
+            const count = cart.reduce((acc, item) => acc + item.qty, 0);
+            document.getElementById('cartCount').innerText = count;
+        }
+
+        function openCartModal() {
+            if (cart.length === 0) return alert("আপনার কার্ট খালি!");
+            document.getElementById("orderModal").style.display = "block";
+            document.getElementById("cartStep").style.display = "block";
+            document.getElementById("addressStep").style.display = "none";
+            renderCart();
+        }
+
+        function renderCart() {
+            const list = document.getElementById("cartItemsList");
+            subtotal = 0;
+            list.innerHTML = cart.map((item, index) => {
+                subtotal += (item.price * item.qty);
+                return `
+                    <div class="cart-item">
+                        <div><strong>${item.name}</strong><br><small>৳ ${item.price}</small></div>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById("cartSubtotal").innerText = subtotal.toLocaleString();
+        }
+
+        function updateQty(index, val) {
+            cart[index].qty += val;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            if (cart.length === 0) closeModal();
+            else renderCart();
+            updateBadge();
+        }
+
+        // ২. ডেলিভারি ও টোটাল ক্যালকুলেশন
+        function calculateFinalTotal() {
+            const deliveryCharge = parseInt(document.querySelector('input[name="Area"]:checked').value);
+            const grandTotal = subtotal + deliveryCharge;
+
+            document.getElementById("summarySubtotal").innerText = "৳ " + subtotal.toLocaleString();
+            document.getElementById("summaryDelivery").innerText = "৳ " + deliveryCharge.toLocaleString();
+            document.getElementById("summaryGrandTotal").innerText = "৳ " + grandTotal.toLocaleString();
+
+            // Hidden Form Data
+            document.getElementById("hiddenGrandTotal").value = "৳ " + grandTotal.toLocaleString();
+            document.getElementById("hiddenDelivery").value = "৳ " + deliveryCharge;
+        }
+
+        function showAddressStep() {
+            document.getElementById("cartStep").style.display = "none";
+            document.getElementById("addressStep").style.display = "block";
+            document.getElementById("backBtn").style.display = "block";
+            
+            document.getElementById("hiddenItems").value = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
+            calculateFinalTotal();
+        }
+
+        // ৩. সরাসরি অর্ডার
+        function openSingleOrder(name, price) {
+            cart = [{ name, price, qty: 1 }];
+            subtotal = price;
+            updateBadge();
+            document.getElementById("orderModal").style.display = "block";
+            document.getElementById("cartStep").style.display = "none";
+            document.getElementById("addressStep").style.display = "block";
+            document.getElementById("backBtn").style.display = "none"; // সরাসরি অর্ডারে ব্যাক বাটন অফ
+            
+            document.getElementById("hiddenItems").value = name + " (Single Order)";
+            calculateFinalTotal();
+        }
+
+        function backToCart() {
+            document.getElementById("addressStep").style.display = "none";
+            document.getElementById("cartStep").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("orderModal").style.display = "none";
+        }
+
+        window.onclick = function(e) {
+            if (e.target == document.getElementById("orderModal")) closeModal();
+        }
+
+        //Success & Thaknyou modal
+
+        // ১. ফর্ম সাবমিট হ্যান্ডলার
+        async function handleOrderSubmit(event) {
+            event.preventDefault(); // পেজ রিফ্রেশ বন্ধ করা
+            const form = event.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            // বাটন ডিজেবল করা যেন বারবার ক্লিক না হয়
+            submitBtn.innerText = "প্রসেসিং হচ্ছে...";
+            submitBtn.disabled = true;
+
+            const data = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    // ফেসবুক পিক্সেল পারচেজ ইভেন্ট
+                    fbq('track', 'Purchase', {value: subtotal, currency: 'BDT'});
+
+                    // গুগল অ্যানালিটিক্স পারচেজ ইভেন্ট
+                    gtag('event', 'purchase', {
+                        "transaction_id": "ORD" + Math.floor(Math.random() * 1000000),
+                        "value": subtotal,
+                        "currency": "BDT"
+                    });
+                    // অর্ডার সফল হলে
+                    closeModal(); // মেইন মোডাল বন্ধ
+                    cart = []; // কার্ট খালি করা
+                    updateBadge(); // কার্ট আইকন জিরো করা
+                    form.reset(); // ফর্ম ক্লিয়ার করা
+                    
+                    // সাকসেস মোডাল দেখানো
+                    document.getElementById("successModal").style.display = "block";
+                } else {
+                    alert("দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                }
+            } catch (error) {
+                alert("ইন্টারনেট কানেকশন চেক করুন।");
+            } finally {
+                submitBtn.innerText = "অর্ডার সম্পন্ন করুন";
+                submitBtn.disabled = false;
+            }
+        }
+
+        // ২. সাকসেস মোডাল বন্ধ করা
+        function closeSuccessModal() {
+            document.getElementById("successModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
