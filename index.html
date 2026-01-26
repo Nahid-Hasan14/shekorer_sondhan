@@ -23,7 +23,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9FZ4CJ3NW"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag(){dataLayer.push(arguments);} 
         gtag('js', new Date());
 
         gtag('config', 'G-P9FZ4CJ3NW');
@@ -379,7 +379,7 @@
         /* ইমেজ এবং ব্যাজ */
         .product-image {
             position: relative;
-            height: 300px;
+            height: 230px;
             overflow: hidden;
             background: #f8fafc;
         }
@@ -576,6 +576,16 @@
             line-height: 1.6;
         }
     </style>
+    <style>
+        .product-image-div {
+            width: 100%;
+            height: 250px; /* আপনার প্রয়োজন অনুযায়ী হাইট সেট করুন */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -655,20 +665,21 @@
         <div class="product-grid">
             <div class="product-card">
                 <div class="product-image">
-                    <span class="badge">নতুন</span>
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=500" alt="Product 1">
+                    <!-- <span class="badge">নতুন</span> -->
+                    <div class="product-image-div">
+                        <img src="./image/tablemat.jpg" alt="Product 2">
+                    </div>
                     <div class="product-actions">
-                        <button title="উইশলিস্ট"><i class="far fa-heart"></i></button>
+                        <button onclick="addToCart('প্রিমিয়াম স্মার্ট ওয়াচ', 1800)"><i class="fas fa-shopping-basket"></i></button>
                         <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
                     </div>
-                    <!-- <button class="add-to-cart">কার্টে যোগ করুন</button> -->
                      <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
-                    <span class="category">ঘড়ি</span>
+                    <span class="category">টেবিল ম্যাট</span>
                     <h3 class="product-name">প্রিমিয়াম স্মার্ট ওয়াচ</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ২,৫০০ <del>৳ 1,০০০</del></div>
+                        <div class="price">৳ ৮৮০ <del>৳ ৮৮০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.8</div>
                     </div>
                 </div>
@@ -676,20 +687,21 @@
 
             <div class="product-card">
                 <div class="product-image">
-                    <span class="badge sale">অফার</span>
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=500" alt="Product 2">
+                    <!-- <span class="badge sale">অফার</span> -->
+                    <div class="product-image-div">
+                        <img src="./image/tablemat2.jpg" alt="Product 2">
+                    </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('হেডফোন', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button onclick="addToCart('code-100', 1800)"><i class="fas fa-shopping-basket"></i></button>
                         <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
                     </div>
-                    <!-- <button class="add-to-cart">কার্টে যোগ করুন</button> -->
                      <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
-                    <span class="category">ইলেকট্রনিক্স</span>
-                    <h3 class="product-name">ওয়্যারলেস হেডফোন</h3>
+                    <span class="category">টেবিল ম্যাট</span>
+                    <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ১,৮০০</div>
+                        <div class="price">৳ ৮৮০</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.5</div>
                     </div>
                 </div>
@@ -697,19 +709,20 @@
 
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=500" alt="Product 3">
+                    <div class="product-image-div">
+                        <img src="./image/tablemat3.jpg" alt="Product 2">
+                    </div>
                     <div class="product-actions">
                         <button onclick="addToCart('Camera', 1800)"><i class="fas fa-shopping-basket"></i></button>
                         <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
                     </div>
-                    <!-- <button class="add-to-cart">কার্টে যোগ করুন</button> -->
                      <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
-                    <span class="category">ক্যামেরা</span>
-                    <h3 class="product-name">ইনস্ট্যান্ট পোলারয়েড ক্যামেরা</h3>
+                    <span class="category">টেবিল ম্যাট</span>
+                    <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৫,৫০০</div>
+                        <div class="price">৳ ৭৮০</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.9</div>
                     </div>
                 </div>
@@ -717,7 +730,9 @@
 
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500" alt="Product 4">
+                    <div class="product-image-div">
+                        <img src="./image/tablemat4.jpg" alt="Product 2">
+                    </div>
                     <div class="product-actions">
                         <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
                         <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
@@ -725,42 +740,316 @@
                     <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
-                    <span class="category">জুতো</span>
-                    <h3 class="product-name">নাইকি স্পোর্টস শু</h3>
+                    <span class="category">টেবিল ম্যাট</span>
+                    <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৪,২০০ <del>৳ ৪,৮০০</del></div>
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/floormat3.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">শতরন্জি রাউন্ড রাগস–</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/tablemate5.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">টেবিল ম্যাট</span>
+                    <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/tablemat6.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">টেবিল ম্যাট</span>
+                    <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/tablemat7.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">টেবিল ম্যাট</span>
+                    <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/foolermat2.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">টেবিল ম্যাট</span>
+                    <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ১৪৩০ <del>৳ ১৪৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/bag1.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/floormat1.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">শতরন্জি বেডরুম ফ্লোর ম্যাট</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৯৭৫ <del>৳ ৯৯০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/bag2.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/bag3.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/bag4.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/bage5.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/bag6.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/bag7.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/bag8.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image-div">
+                        <img src="./image/bag9.jpg" alt="Product 2">
+                    </div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Juta', 1800)"><i class="fas fa-shopping-basket"></i></button>
+                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                    </div>
+                    <button class="add-to-cart" onclick="openOrderModal('প্রিমিয়াম স্মার্ট ওয়াচ')">অর্ডার করুন</button>
+                </div>
+                <div class="product-info">
+                    <span class="category">হস্তশিল্প</span>
+                    <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ</h3>
+                    <div class="price-rating">
+                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
-            <h3>অর্ডার নিশ্চিত করুন</h3>
-            <p id="selectedProduct" style="font-weight: bold; color: var(--primary); margin-bottom: 15px;"></p>
-            
-            <form action="https://formspree.io/f/meeebgvo" method="POST" id="checkoutForm">
-                <input type="hidden" name="Product Name" id="hiddenProductName">
-                
-                <div class="input-group">
-                    <label>আপনার নাম</label>
-                    <input type="text" name="Customer Name" placeholder="উদা: আব্দুল্লাহ" required>
-                </div>
-                <div class="input-group">
-                    <label>ফোন নম্বর</label>
-                    <input type="tel" name="Phone Number" placeholder="উদা: 017XXXXXXXX" required>
-                </div>
-                <div class="input-group">
-                    <label>পূর্ণ ঠিকানা</label>
-                    <textarea name="Address" placeholder="আপনার জেলা ও থানার নাম লিখুন" required></textarea>
-                </div>
-                <button type="submit" class="confirm-btn">অর্ডার সাবমিট করুন</button>
-            </form>
-        </div>
-    </div> -->
 
     <div class="floating-cart" onclick="openCartModal()">
         <i class="fas fa-shopping-cart"></i>
@@ -842,7 +1131,7 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-col">
-                <a href="#" class="footer-logo">LUXENAV</a>
+                <a href="#" class="footer-logo">শেকড়ের সন্ধান</a>
                 <p class="footer-desc">
                     আমরা প্রদান করি সেরা মানের পণ্য এবং সেবা। আমাদের লক্ষ্য গ্রাহকের সন্তুষ্টি এবং বিশ্বাস অর্জন করা।
                 </p>
@@ -885,7 +1174,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2026 LUXENAV - সর্বস্বত্ব সংরক্ষিত।</p>
+            <p>&copy; 2026 শেকড়ের সন্ধান - সর্বস্বত্ব সংরক্ষিত।</p>
         </div>
     </footer>
 
