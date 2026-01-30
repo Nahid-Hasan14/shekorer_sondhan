@@ -14,8 +14,8 @@
 
         fbq('init', 'আপনার_পিক্সেল_ID_এখানে_দিন'); 
         fbq('track', 'PageView');
-        </script>
-        <noscript>
+    </script>
+    <noscript>
         <img height="1" width="1" style="display:none"
         src="https://www.facebook.com/tr?id=আপনার_পিক্সেল_ID_এখানে_দিন&ev=PageView&noscript=1"/>
     </noscript>
@@ -586,8 +586,131 @@
             justify-content: center;
         }
     </style>
+    <!-- View Details Products -->
+     <style>
+        /* Modal Background */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        /* Modal Box */
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            width: 70%;
+            max-width: 800px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px; 
+            top: 5px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            display: flex;
+            gap: 20px;
+        }
+
+        .modal-price {
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            margin-bottom: 15px;
+        }
+
+        .modal-images {
+            max-width: 300px;
+        }
+
+        .modal-images img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .thumbnail-container img {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+
+        .modal-details { flex: 1; }
+
+        .add-to-cart-btn {
+            padding: 5px 10px;
+            border: none;
+            background: #120fa1;
+            color: #fff;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        .add-to-cart-btn:hover {
+            background: #514dca;
+            color: #fff;
+        }
+
+        /* মোবাইলের জন্য পজিশন কিছুটা অ্যাডজাস্টমেন্ট */
+        @media screen and (max-width: 768px) {
+            .modal-body {
+                display: block;
+                margin-top: 15px;
+            }
+            .modal-details {
+                margin-top: 15px;
+            }
+        }
+     </style>
 </head>
 <body>
+
+    <script>
+        (function () {
+            // Disable right click
+            document.addEventListener('contextmenu', e => e.preventDefault());
+
+            // Disable dev tools shortcuts
+            document.onkeydown = function(e) {
+                if (
+                    e.keyCode === 123 || // F12
+                    (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) ||
+                    (e.ctrlKey && e.key === 'U')
+                ) {
+                    return false;
+                }
+            };
+
+            // Devtools detect (basic)
+            setInterval(() => {
+                if (window.outerWidth - window.innerWidth > 160 ||
+                    window.outerHeight - window.innerHeight > 160) {
+                    document.body.innerHTML =
+                    '<h2 style="text-align:center;margin-top:20%">Developer tools are disabled</h2>';
+                }
+            }, 1000);
+        })();
+    </script>
+
 
     <nav class="navbar">
         <div class="container">
@@ -634,7 +757,8 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1400" alt="Slider 1">
+                <img src="./image/tablemat.jpg" alt="Slider 1">
+                <!-- <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1400" alt="Slider 1"> -->
                 <div class="slide-content">
                     <h2>New Arrivals</h2>
                     <p>আপনার প্রিয় ফ্যাশন ব্র্যান্ডের নতুন কালেকশন এখন হাতের নাগালে।</p>
@@ -642,7 +766,24 @@
                 </div>
             </div>
             <div class="swiper-slide">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1400" alt="Slider 2">
+                <img src="./image/tablemat2.jpg" alt="Slider 2">
+                <!-- <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1400" alt="Slider 2"> -->
+                <div class="slide-content">
+                    <h2>Big Discounts</h2>
+                    <p>সব পণ্যে পাচ্ছেন ২৫% পর্যন্ত বিশাল ছাড়! অফারটি সীমিত সময়ের জন্য।</p>
+                    <a href="#" class="shop-btn">Get Offer</a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="./image/tablemate5.jpg" alt="Slider 2">
+                <div class="slide-content">
+                    <h2>Big Discounts</h2>
+                    <p>সব পণ্যে পাচ্ছেন ২৫% পর্যন্ত বিশাল ছাড়! অফারটি সীমিত সময়ের জন্য।</p>
+                    <a href="#" class="shop-btn">Get Offer</a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="./image/tablemat7.jpg" alt="Slider 2">
                 <div class="slide-content">
                     <h2>Big Discounts</h2>
                     <p>সব পণ্যে পাচ্ছেন ২৫% পর্যন্ত বিশাল ছাড়! অফারটি সীমিত সময়ের জন্য।</p>
@@ -671,7 +812,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট(কোড-১০০)', 880)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <!-- <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button> -->
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট(কোড-১০০)', 880, './image/tablemat.jpg', ['./image/tablemat.jpg', './image/tablemat.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                      <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট(কোড-১০০)', 880)">অর্ডার করুন</button>
                 </div>
@@ -679,7 +823,7 @@
                     <span class="category">টেবিল ম্যাট</span>
                     <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট(কোড-১০০)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৮৮০ <del>৳ ৮৮০</del></div>
+                        <div class="price">৳ ৮৮০ <del>৳ ৮৯০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.8</div>
                     </div>
                 </div>
@@ -693,7 +837,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট(কোড-১০১)', 880)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট(কোড-১০১)', 880, './image/tablemat2.jpg', ['./image/tablemat2.jpg', './image/tablemat2.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                      <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট(কোড-১০১)', 880)">অর্ডার করুন</button>
                 </div>
@@ -714,7 +861,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০২)', 780)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট(কোড-১০২)', 780, './image/tablemat3.jpg', ['./image/tablemat3.jpg', './image/tablemat3.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                      <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০২)', 780)">অর্ডার করুন</button>
                 </div>
@@ -735,7 +885,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৩)', 780)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৩)', 780, './image/tablemat4.jpg', ['./image/tablemat4.jpg', './image/tablemat4.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                     <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৩)', 780)">অর্ডার করুন</button>
                 </div>
@@ -743,7 +896,7 @@
                     <span class="category">টেবিল ম্যাট</span>
                     <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৩)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৯০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -755,7 +908,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি রাউন্ড রাগস (কোড-১০৪)', 780)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি রাউন্ড রাগস (কোড-১০৪)', 780, './image/floormat3.jpg', ['./image/floormat3.jpg', './image/floormat3.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                     <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি রাউন্ড রাগস (কোড-১০৪)', 780)">অর্ডার করুন</button>
                 </div>
@@ -763,7 +919,7 @@
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">শতরন্জি রাউন্ড রাগস (কোড-১০৪)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৯০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -775,7 +931,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৫)', 780)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৫)', 780, './image/tablemate5.jpg', ['./image/tablemate5.jpg', './image/tablemate5.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                     <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৫)', 780)">অর্ডার করুন</button>
                 </div>
@@ -783,7 +942,7 @@
                     <span class="category">টেবিল ম্যাট</span>
                     <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৫)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৯০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -795,7 +954,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৬)', 780)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৬)', 780, './image/tablemat6.jpg', ['./image/tablemat6.jpg', './image/tablemat6.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                     <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৬)', 780)">অর্ডার করুন</button>
                 </div>
@@ -803,7 +965,7 @@
                     <span class="category">টেবিল ম্যাট</span>
                     <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৬)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৯০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -815,7 +977,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৭)', 780)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৭)', 780, './image/tablemat7.jpg', ['./image/tablemat7.jpg', './image/tablemat7.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                     <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৭)', 780)">অর্ডার করুন</button>
                 </div>
@@ -823,7 +988,7 @@
                     <span class="category">টেবিল ম্যাট</span>
                     <h3 class="product-name">শতরন্জি কটন জামদানি টেবিল রানার ম্যাট (কোড-১০৭)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৭৮০ <del>৳ ৭৯০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -835,7 +1000,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি বেডরুম ফ্লোর ম্যাট (কোড-১০৮)', 1430)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি বেডরুম ফ্লোর ম্যাট (কোড-১০৮)', 1430, './image/foolermat2.jpg', ['./image/foolermat2.jpg', './image/foolermat2.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                     <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি বেডরুম ফ্লোর ম্যাট (কোড-১০৮)', 1430)">অর্ডার করুন</button>
                 </div>
@@ -854,16 +1022,19 @@
                         <img src="./image/bag1.jpg" alt="Product 2">
                     </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০১)', 780)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০১)', 650)"><i class="fas fa-shopping-basket"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০১)', 650, './image/bag1.jpg', ['./image/bag1.jpg', './image/bag1.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০১)', 780)">অর্ডার করুন</button>
+                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০১)', 650)">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০১)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭৮০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৬৫০ <del>৳ ৭০০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -875,7 +1046,10 @@
                     </div>
                     <div class="product-actions">
                         <button onclick="addToCart('শতরন্জি বেডরুম ফ্লোর ম্যাট (কোড-১০৯)', 975)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('শতরন্জি বেডরুম ফ্লোর ম্যাট (কোড-১০৯)', 975, './image/floormat1.jpg', ['./image/floormat1.jpg', './image/floormat1.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
                     <button class="add-to-cart" onclick="openSingleOrder('শতরন্জি বেডরুম ফ্লোর ম্যাট (কোড-১০৯)', 975)">অর্ডার করুন</button>
                 </div>
@@ -894,16 +1068,19 @@
                         <img src="./image/bag2.jpg" alt="Product 2">
                     </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০২)', 700)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০২)', 650)"><i class="fas fa-shopping-basket"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০২)', 650, './image/bag2.jpg', ['./image/bag2.jpg', './image/bag2.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০২)', 700)">অর্ডার করুন</button>
+                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০২)', 650)">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০২)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৬৫০ <del>৳ ৭০০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -914,16 +1091,19 @@
                         <img src="./image/bag3.jpg" alt="Product 2">
                     </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৩)', 700)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৩)', 650)"><i class="fas fa-shopping-basket"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৩)', 650, './image/bag3.jpg', ['./image/bag3.jpg', './image/bag3.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৩)', 700)">অর্ডার করুন</button>
+                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৩)', 650)">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৩)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৬৫০ <del>৳ ৭০০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -934,16 +1114,19 @@
                         <img src="./image/bag4.jpg" alt="Product 2">
                     </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৪)', 700)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৪)', 650)"><i class="fas fa-shopping-basket"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৪)', 650, './image/bag4.jpg', ['./image/bag4.jpg', './image/bag4.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৪)', 700)">অর্ডার করুন</button>
+                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৪)', 650)">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৪)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৬৫০ <del>৳ ৭০০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -954,16 +1137,19 @@
                         <img src="./image/bage5.jpg" alt="Product 2">
                     </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৫)', 700)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৫)', 650)"><i class="fas fa-shopping-basket"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৫)', 650, './image/bage5.jpg', ['./image/bage5.jpg', './image/bage5.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৫)', 700)">অর্ডার করুন</button>
+                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৫)', 650)">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৫)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৬৫০ <del>৳ ৭০০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -974,16 +1160,19 @@
                         <img src="./image/bag6.jpg" alt="Product 2">
                     </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৬)', 700)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৬)', 650)"><i class="fas fa-shopping-basket"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৬)', 650, './image/bag6.jpg', ['./image/bag6.jpg', './image/bag6.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৬)', 700)">অর্ডার করুন</button>
+                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৬)', 650)">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৬)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৬৫০ <del>৳ ৭০০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -994,16 +1183,19 @@
                         <img src="./image/bag7.jpg" alt="Product 2">
                     </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৭)', 700)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৭)', 650)"><i class="fas fa-shopping-basket"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৭)', 650, './image/bag7.jpg', ['./image/bag7.jpg', './image/bag7.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৭)', 700)">অর্ডার করুন</button>
+                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৭)', 650)">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৭)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৬৫০ <del>৳ ৭০০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -1014,16 +1206,19 @@
                         <img src="./image/bag8.jpg" alt="Product 2">
                     </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৮)', 700)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৮)', 650)"><i class="fas fa-shopping-basket"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৮)', 650, './image/bag8.jpg', ['./image/bag8.jpg', './image/bag8.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৮)', 700)">অর্ডার করুন</button>
+                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৮)', 650)">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৮)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৬৫০ <del>৳ ৭০০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -1034,16 +1229,19 @@
                         <img src="./image/bag9.jpg" alt="Product 2">
                     </div>
                     <div class="product-actions">
-                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৯)', 700)"><i class="fas fa-shopping-basket"></i></button>
-                        <button title="এক নজরে দেখুন"><i class="far fa-eye"></i></button>
+                        <button onclick="addToCart('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৯)', 650)"><i class="fas fa-shopping-basket"></i></button>
+                        
+                        <button title="এক নজরে দেখুন" onclick="viewProduct('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৯)', 650, './image/bag9.jpg', ['./image/bag9.jpg', './image/bag9.jpg'])">
+                            <i class="far fa-eye"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৯)', 700)">অর্ডার করুন</button>
+                    <button class="add-to-cart" onclick="openSingleOrder('ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৯)', 650)">অর্ডার করুন</button>
                 </div>
                 <div class="product-info">
                     <span class="category">হস্তশিল্প</span>
                     <h3 class="product-name">ক্লাসিক হ্যান্ডক্রাফট হ্যান্ড ব্যাগ (কোড-২০৯)</h3>
                     <div class="price-rating">
-                        <div class="price">৳ ৭০০ <del>৳ ৭৮০</del></div>
+                        <div class="price">৳ ৬৫০ <del>৳ ৭০০</del></div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7</div>
                     </div>
                 </div>
@@ -1178,6 +1376,26 @@
         </div>
     </footer>
 
+    <!-- View -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeViewModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-images">
+                    <img id="mainModalImg" src="" alt="Main Product Image">
+                    <div class="thumbnail-container" id="thumbnailContainer"></div>
+                </div>
+                <div class="modal-details">
+                    <h3 id="modalProductName"></h3>
+                    <p id="modalCategory"></p>
+                    <div class="modal-price" id="modalPrice"></div>
+                    <p class="description">ব্যবহারিকতা ও নান্দনিকতার সুন্দর সমন্বয়ে তৈরি এই পণ্যটি দীর্ঘদিন ব্যবহার উপযোগী।</p>
+                    <button class="add-to-cart-btn">কার্টে যোগ করুন</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         // Navbar Mobile Toggle Logic
@@ -1229,8 +1447,17 @@
     </script>
 
     <script>
-        let cart = [];
+
+        // ১. ইনিশিয়ালাইজেশন
+        let cart = JSON.parse(localStorage.getItem('shikhorersondhanCart')) || [];
         let subtotal = 0;
+
+        // পেজ লোড হওয়ার সাথে সাথে কার্ট আপডেট
+        window.onload = function() {
+            updateBadge();
+        };
+        // let cart = [];
+        // let subtotal = 0;
 
         // 1. Cart Logic
         function addToCart(name, price) {
@@ -1240,8 +1467,12 @@
             } else {
                 cart.push({ name, price, qty: 1 });
             }
+
+            localStorage.setItem('shikhorersondhanCart', JSON.stringify(cart));
             updateBadge();
             alert(name + " কার্টে যোগ হয়েছে!");
+            // updateBadge();
+            // alert(name + " কার্টে যোগ হয়েছে!");
         }
 
         function updateBadge() {
@@ -1279,6 +1510,9 @@
         function updateQty(index, val) {
             cart[index].qty += val;
             if (cart[index].qty <= 0) cart.splice(index, 1);
+
+            localStorage.setItem('shikhorersondhanCart', JSON.stringify(cart));
+
             if (cart.length === 0) closeModal();
             else renderCart();
             updateBadge();
@@ -1356,6 +1590,11 @@
                 });
 
                 if (response.ok) {
+
+                    // LocalStorage থেকে কার্ট ডেটা মুছে দিন
+                    localStorage.removeItem('shikhorersondhanCart');
+                    cart = []; // মেমোরি কার্টও ক্লিয়ার করুন
+
                     // ফেসবুক পিক্সেল পারচেজ ইভেন্ট
                     fbq('track', 'Purchase', {value: subtotal, currency: 'BDT'});
 
@@ -1384,10 +1623,58 @@
             }
         }
 
+        // ৬. কার্ট ক্লিয়ার ফাংশন
+        function clearCart() {
+            if(confirm("কার্টের সব আইটেম মুছে ফেলতে চান?")) {
+                localStorage.removeItem('shikhorersondhanCart');
+                cart = [];
+                updateBadge();
+                alert("কার্ট ক্লিয়ার হয়েছে!");
+            }
+        }
+
         // ২. সাকসেস মোডাল বন্ধ করা
         function closeSuccessModal() {
             document.getElementById("successModal").style.display = "none";
         }
     </script>
+
+    <!-- View -->
+     <script>
+        function viewProduct(name, price, mainImg, otherImgs) {
+            const modal = document.getElementById('productModal');
+            
+            // ডাটা সেট করা
+            document.getElementById('modalProductName').innerText = name;
+            document.getElementById('modalPrice').innerText = '৳ ' + price;
+            document.getElementById('mainModalImg').src = mainImg;
+            
+            // থাম্বনেইল ইমেজ তৈরি
+            const thumbContainer = document.getElementById('thumbnailContainer');
+            thumbContainer.innerHTML = ''; // আগের ছবি মুছে ফেলা
+            
+            // মেইন ইমেজটিকেও একটি থাম্বনেইল হিসেবে রাখা
+            [mainImg, ...otherImgs].forEach(imgSrc => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.onclick = () => document.getElementById('mainModalImg').src = imgSrc;
+                thumbContainer.appendChild(img);
+            });
+
+            modal.style.display = "block";
+        }
+
+        function closeViewModal() {
+            document.getElementById('productModal').style.display = "none";
+        }
+
+        // মোডালের বাইরে ক্লিক করলে বন্ধ হওয়া
+        window.onclick = function(event) {
+            let modal = document.getElementById('productModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+     </script>
 </body>
 </html>
