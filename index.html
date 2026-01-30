@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 
     <style>
         :root {
@@ -1409,13 +1411,16 @@
                     <p id="modalCategory"></p>
                     <div class="modal-price" id="modalPrice"></div>
                     <p class="description">ব্যবহারিকতা ও নান্দনিকতার সুন্দর সমন্বয়ে তৈরি এই পণ্যটি দীর্ঘদিন ব্যবহার উপযোগী।</p>
-                    <button class="add-to-cart-btn">কার্টে যোগ করুন</button>
+                    <button onclick="addViewProductToCart()" class="add-to-cart-btn">কার্টে যোগ করুন</button>
+                    <button onclick="addViewProductOrder()" class="add-to-cart-btn">অর্ডার করুন</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <script>
         // Navbar Mobile Toggle Logic
         const openBtn = document.getElementById('openBtn');
@@ -1443,7 +1448,7 @@
             },
         });
     </script>
-    <script>
+    <!-- <script>
         const modal = document.getElementById("orderModal");
 
         // অর্ডার বাটন ফাংশন (কার্ডের বাটনে এটি কল করবেন)
@@ -1463,7 +1468,7 @@
                 closeOrderModal();
             }
         }
-    </script>
+    </script> -->
 
     <script>
 
@@ -1489,9 +1494,13 @@
 
             localStorage.setItem('shikhorersondhanCart', JSON.stringify(cart));
             updateBadge();
-            alert(name + " কার্টে যোগ হয়েছে!");
-            // updateBadge();
-            // alert(name + " কার্টে যোগ হয়েছে!");
+            Toastify({
+                text: "✔ পণ্য সফলভাবে কার্টে যোগ হয়েছে",
+                duration: 2500,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#16a34a",
+            }).showToast();
         }
 
         function updateBadge() {
@@ -1500,7 +1509,18 @@
         }
 
         function openCartModal() {
-            if (cart.length === 0) return alert("আপনার কার্ট খালি!");
+            if (cart.length === 0) {
+                
+                Toastify({
+                    text: "আপনার কার্ট খালি!",
+                    duration: 2500,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#16a34a",
+                }).showToast();
+
+                return;
+            } 
             document.getElementById("orderModal").style.display = "block";
             document.getElementById("cartStep").style.display = "block";
             document.getElementById("addressStep").style.display = "none";
@@ -1632,10 +1652,22 @@
                     // সাকসেস মোডাল দেখানো
                     document.getElementById("successModal").style.display = "block";
                 } else {
-                    alert("দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                    Toastify({
+                        text: "দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+                        duration: 2500,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#16a34a",
+                    }).showToast();
                 }
             } catch (error) {
-                alert("ইন্টারনেট কানেকশন চেক করুন।");
+                Toastify({
+                    text: "ইন্টারনেট কানেকশন চেক করুন।",
+                    duration: 2500,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#16a34a",
+                }).showToast();
             } finally {
                 submitBtn.innerText = "অর্ডার সম্পন্ন করুন";
                 submitBtn.disabled = false;
@@ -1648,7 +1680,13 @@
                 localStorage.removeItem('shikhorersondhanCart');
                 cart = [];
                 updateBadge();
-                alert("কার্ট ক্লিয়ার হয়েছে!");
+                Toastify({
+                    text: "কার্ট ক্লিয়ার হয়েছে!",
+                    duration: 2500,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#16a34a",
+                }).showToast();
             }
         }
 
@@ -1660,9 +1698,19 @@
 
     <!-- View -->
      <script>
+        //Store Product name & Price for AddToCart from view Modal
+        let currentViewProduct = {
+            name: "",
+            price: 0
+        };
+
         function viewProduct(name, price, mainImg, otherImgs) {
             const modal = document.getElementById('productModal');
             
+            currentViewProduct.name = name;
+            currentViewProduct.price = price;
+
+            //product data store
             // ডাটা সেট করা
             document.getElementById('modalProductName').innerText = name;
             document.getElementById('modalPrice').innerText = '৳ ' + price;
@@ -1681,6 +1729,18 @@
             });
 
             modal.style.display = "block";
+        }
+
+        function addViewProductToCart() {
+            addToCart(currentViewProduct.name, currentViewProduct.price);
+
+            closeViewModal(); // modal বন্ধ
+        }
+
+        function addViewProductOrder() {
+            openSingleOrder(currentViewProduct.name, currentViewProduct.price);
+
+            closeViewModal(); // modal বন্ধ
         }
 
         function closeViewModal() {
