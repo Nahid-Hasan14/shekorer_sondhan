@@ -1308,7 +1308,7 @@
                     </div>
                 </div>
 
-                <form action="https://script.google.com/macros/s/AKfycbwMRe9OJ2VL2gowvivedj-Y4lMix4x6dvXuQH1g056OTnETC5NwZayso2EgqBwVEFzI/exec" method="POST" onsubmit="handleOrderSubmit(event)">
+                <form action="/api/submit.js" method="POST" onsubmit="handleOrderSubmit(event)">
                     <input type="hidden" name="Order_Items" id="hiddenItems">
                     <input type="hidden" name="Total_Bill" id="hiddenGrandTotal">
                     <input type="hidden" name="Delivery_Charge" id="hiddenDelivery">
@@ -1607,148 +1607,81 @@
             if (e.target == document.getElementById("orderModal")) closeModal();
         }
 
-        //Success & Thaknyou modal
-
         // ১. ফর্ম সাবমিট হ্যান্ডলার
-        // async function handleOrderSubmit(event) {
-        //     event.preventDefault(); // পেজ রিফ্রেশ বন্ধ করা
-        //     const form = event.target;
-        //     const submitBtn = form.querySelector('button[type="submit"]');
+        async function handleOrderSubmit(event) {
+            event.preventDefault(); // পেজ রিফ্রেশ বন্ধ করা
+            const form = event.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
             
-        //     // বাটন ডিজেবল করা যেন বারবার ক্লিক না হয়
-        //     submitBtn.innerText = "প্রসেসিং হচ্ছে...";
-        //     submitBtn.disabled = true;
+            // বাটন ডিজেবল করা
+            submitBtn.innerText = "প্রসেসিং হচ্ছে...";
+            submitBtn.disabled = true;
 
-        //     const data = new FormData(form);
+            // FormData-কে URLSearchParams-এ রূপান্তর (গুগল স্ক্রিপ্টের জন্য জরুরি)
+            const formData = new FormData(form);
+            const encodedData = new URLSearchParams(formData);
             
-        //     try {
-        //         const response = await fetch(form.action, {
-        //             method: 'POST',
-        //             body: data,
-        //             headers: { 'Accept': 'application/json' }
-        //         });
-
-        //         if (response.ok) {
-
-        //             // LocalStorage থেকে কার্ট ডেটা মুছে দিন
-        //             localStorage.removeItem('shikhorersondhanCart');
-        //             cart = []; // মেমোরি কার্টও ক্লিয়ার করুন
-
-        //             // ফেসবুক পিক্সেল পারচেজ ইভেন্ট
-        //             fbq('track', 'Purchase', {value: subtotal, currency: 'BDT'});
-
-        //             // গুগল অ্যানালিটিক্স পারচেজ ইভেন্ট
-        //             gtag('event', 'purchase', {
-        //                 "transaction_id": "ORD" + Math.floor(Math.random() * 1000000),
-        //                 "value": subtotal,
-        //                 "currency": "BDT"
-        //             });
-        //             // অর্ডার সফল হলে
-        //             closeModal(); // মেইন মোডাল বন্ধ
-        //             cart = []; // কার্ট খালি করা
-        //             updateBadge(); // কার্ট আইকন জিরো করা
-        //             form.reset(); // ফর্ম ক্লিয়ার করা
-                    
-        //             // সাকসেস মোডাল দেখানো
-        //             document.getElementById("successModal").style.display = "block";
-        //         } else {
-        //             Toastify({
-        //                 text: "দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।",
-        //                 duration: 2500,
-        //                 gravity: "top",
-        //                 position: "center",
-        //                 backgroundColor: "#16a34a",
-        //             }).showToast();
-        //         }
-        //     } catch (error) {
-        //         Toastify({
-        //             text: "ইন্টারনেট কানেকশন চেক করুন।",
-        //             duration: 2500,
-        //             gravity: "top",
-        //             position: "center",
-        //             backgroundColor: "#16a34a",
-        //         }).showToast();
-        //     } finally {
-        //         submitBtn.innerText = "অর্ডার সম্পন্ন করুন";
-        //         submitBtn.disabled = false;
-        //     }
-        // }
-
-        // ১. ফর্ম সাবমিট হ্যান্ডলার
-async function handleOrderSubmit(event) {
-    event.preventDefault(); // পেজ রিফ্রেশ বন্ধ করা
-    const form = event.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    
-    // বাটন ডিজেবল করা
-    submitBtn.innerText = "প্রসেসিং হচ্ছে...";
-    submitBtn.disabled = true;
-
-    // FormData-কে URLSearchParams-এ রূপান্তর (গুগল স্ক্রিপ্টের জন্য জরুরি)
-    const formData = new FormData(form);
-    const encodedData = new URLSearchParams(formData);
-    
-    try {
-        // এখানে আপনার নতুন Google Web App URL টি দিন
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: encodedData, // এখানে সরাসরি data না দিয়ে encodedData দিন
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        });
-
-        // গুগল স্ক্রিপ্ট সাধারণত সরাসরি JSON response দেয় না, তাই টেক্সট চেক করা ভালো
-        const result = await response.text();
-
-        if (result.includes("Success")) {
-            // LocalStorage থেকে কার্ট ডেটা মুছে দিন
-            localStorage.removeItem('shikhorersondhanCart');
-            
-            // ফেসবুক পিক্সেল পারচেজ ইভেন্ট (subtotal ভেরিয়েবল নিশ্চিত করুন)
-            if (typeof fbq === 'function') {
-                fbq('track', 'Purchase', {value: subtotal || 0, currency: 'BDT'});
-            }
-
-            // গুগল অ্যানালিটিক্স পারচেজ ইভেন্ট
-            if (typeof gtag === 'function') {
-                gtag('event', 'purchase', {
-                    "transaction_id": "ORD" + Math.floor(Math.random() * 1000000),
-                    "value": subtotal || 0,
-                    "currency": "BDT"
+            try {
+                // এখানে আপনার নতুন Google Web App URL টি দিন
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: encodedData, // এখানে সরাসরি data না দিয়ে encodedData দিন
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
                 });
-            }
 
-            // অর্ডার সফল হলে UI আপডেট
-            closeModal(); // মেইন মোডাল বন্ধ
-            cart = []; // কার্ট খালি করা
-            updateBadge(); // কার্ট আইকন জিরো করা
-            form.reset(); // ফর্ম ক্লিয়ার করা
-            
-            // সাকসেস মোডাল দেখানো
-            if(document.getElementById("successModal")) {
-                document.getElementById("successModal").style.display = "block";
-            } else {
-                alert("অর্ডার সফল হয়েছে!");
-            }
+                // গুগল স্ক্রিপ্ট সাধারণত সরাসরি JSON response দেয় না, তাই টেক্সট চেক করা ভালো
+                const result = await response.text();
 
-        } else {
-            throw new Error("Server response failed");
+                if (result.includes("Success")) {
+                    // LocalStorage থেকে কার্ট ডেটা মুছে দিন
+                    localStorage.removeItem('shikhorersondhanCart');
+                    
+                    // ফেসবুক পিক্সেল পারচেজ ইভেন্ট (subtotal ভেরিয়েবল নিশ্চিত করুন)
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'Purchase', {value: subtotal || 0, currency: 'BDT'});
+                    }
+
+                    // গুগল অ্যানালিটিক্স পারচেজ ইভেন্ট
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'purchase', {
+                            "transaction_id": "ORD" + Math.floor(Math.random() * 1000000),
+                            "value": subtotal || 0,
+                            "currency": "BDT"
+                        });
+                    }
+
+                    // অর্ডার সফল হলে UI আপডেট
+                    closeModal(); // মেইন মোডাল বন্ধ
+                    cart = []; // কার্ট খালি করা
+                    updateBadge(); // কার্ট আইকন জিরো করা
+                    form.reset(); // ফর্ম ক্লিয়ার করা
+                    
+                    // সাকসেস মোডাল দেখানো
+                    if(document.getElementById("successModal")) {
+                        document.getElementById("successModal").style.display = "block";
+                    } else {
+                        alert("অর্ডার সফল হয়েছে!");
+                    }
+
+                } else {
+                    throw new Error("Server response failed");
+                }
+            } catch (error) {
+                console.error('Error!', error);
+                Toastify({
+                    text: "দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+                    duration: 2500,
+                    gravity: "top",
+                    position: "center",
+                    style: { background: "#ef4444" } // লালা রঙ (Error)
+                }).showToast();
+            } finally {
+                submitBtn.innerText = "অর্ডার সম্পন্ন করুন";
+                submitBtn.disabled = false;
+            }
         }
-    } catch (error) {
-        console.error('Error!', error);
-        Toastify({
-            text: "দুঃখিত! কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।",
-            duration: 2500,
-            gravity: "top",
-            position: "center",
-            style: { background: "#ef4444" } // লালা রঙ (Error)
-        }).showToast();
-    } finally {
-        submitBtn.innerText = "অর্ডার সম্পন্ন করুন";
-        submitBtn.disabled = false;
-    }
-}
 
         // ৬. কার্ট ক্লিয়ার ফাংশন
         function clearCart() {
