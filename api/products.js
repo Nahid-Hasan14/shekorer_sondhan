@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  const url = "GOOGLE_SCRIPT_URL";
+  const url = process.env.GOOGLE_SCRIPT_URL;
 
   try {
     const response = await fetch(url);
